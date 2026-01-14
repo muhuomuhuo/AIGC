@@ -1,722 +1,796 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Green Network - Protect Earth</title>
+    <title>探索AIGC的世界 - 人工智能生成内容</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Segoe UI', 'Microsoft YaHei', sans-serif;
         }
-
+        
         :root {
-            --primary: #2e7d32;
-            --secondary: #4caf50;
-            --accent: #8bc34a;
-            --light: #e8f5e9;
-            --dark: #1b5e20;
-            --text: #333333;
-            --white: #ffffff;
+            --primary: #3a86ff;
+            --secondary: #8338ec;
+            --dark: #1a1a2e;
+            --light: #f8f9fa;
+            --gray: #6c757d;
+            --success: #06d6a0;
+            --warning: #ffd166;
         }
-
+        
         body {
-            background-color: var(--light);
-            color: var(--text);
+            background-color: #f0f2f5;
+            color: #333;
             line-height: 1.6;
         }
-
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* 头部样式 */
         header {
-            background: linear-gradient(to right, var(--primary), var(--secondary));
-            color: var(--white);
+            background: linear-gradient(135deg, var(--dark) 0%, #16213e 100%);
+            color: white;
             padding: 1rem 0;
             position: sticky;
             top: 0;
             z-index: 100;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         }
-
-        .container {
-            width: 90%;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .nav-container {
+        
+        .header-container {
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
-
+        
         .logo {
             display: flex;
             align-items: center;
-            gap: 10px;
             font-size: 1.8rem;
             font-weight: 700;
         }
-
+        
         .logo i {
+            color: var(--primary);
+            margin-right: 10px;
             font-size: 2rem;
         }
-
-        nav ul {
+        
+        .nav-links {
             display: flex;
             list-style: none;
         }
-
-        nav ul li {
+        
+        .nav-links li {
             margin-left: 2rem;
         }
-
-        nav ul li a {
-            color: var(--white);
+        
+        .nav-links a {
+            color: white;
             text-decoration: none;
             font-weight: 500;
-            transition: all 0.3s ease;
-            padding: 0.5rem 0;
-            position: relative;
+            transition: color 0.3s;
         }
-
-        nav ul li a:hover {
-            color: var(--accent);
+        
+        .nav-links a:hover {
+            color: var(--primary);
         }
-
-        nav ul li a::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background-color: var(--accent);
-            transition: width 0.3s ease;
+        
+        .mobile-toggle {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
         }
-
-        nav ul li a:hover::after {
-            width: 100%;
-        }
-
+        
+        /* 英雄区域 */
         .hero {
-            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.4)), url('https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2073&q=80');
+            background: linear-gradient(rgba(26, 26, 46, 0.9), rgba(26, 26, 46, 0.8)), url('https://images.unsplash.com/photo-1677442136019-21780ecad995?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80');
             background-size: cover;
             background-position: center;
-            height: 80vh;
-            display: flex;
-            align-items: center;
+            color: white;
+            padding: 6rem 0;
             text-align: center;
-            color: var(--white);
         }
-
-        .hero-content {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
+        
         .hero h1 {
             font-size: 3.5rem;
-            margin-bottom: 1rem;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
         }
-
+        
         .hero p {
             font-size: 1.3rem;
-            margin-bottom: 2rem;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            opacity: 0.9;
         }
-
-        .btn {
+        
+        .hero .subtitle {
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+        
+        .cta-button {
             display: inline-block;
-            background-color: var(--accent);
-            color: var(--white);
-            padding: 0.8rem 2rem;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            color: white;
+            padding: 1rem 2.5rem;
             border-radius: 50px;
             text-decoration: none;
             font-weight: 600;
-            transition: all 0.3s ease;
-            border: none;
-            cursor: pointer;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            font-size: 1.1rem;
+            margin-top: 1.5rem;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 4px 15px rgba(58, 134, 255, 0.4);
         }
-
-        .btn:hover {
-            background-color: var(--primary);
+        
+        .cta-button:hover {
             transform: translateY(-3px);
-            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 6px 20px rgba(58, 134, 255, 0.6);
         }
-
+        
+        /* 内容区域 */
         section {
             padding: 5rem 0;
         }
-
+        
         .section-title {
             text-align: center;
             margin-bottom: 3rem;
         }
-
+        
         .section-title h2 {
             font-size: 2.5rem;
-            color: var(--primary);
+            color: var(--dark);
             margin-bottom: 1rem;
             position: relative;
             display: inline-block;
         }
-
-        .section-title h2::after {
+        
+        .section-title h2:after {
             content: '';
             position: absolute;
+            width: 70px;
+            height: 4px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
             bottom: -10px;
             left: 50%;
             transform: translateX(-50%);
-            width: 80px;
-            height: 4px;
-            background-color: var(--accent);
             border-radius: 2px;
         }
-
+        
         .section-title p {
-            color: var(--text);
+            color: var(--gray);
             max-width: 700px;
             margin: 0 auto;
         }
-
-        .about-content {
+        
+        /* 卡片布局 */
+        .cards-container {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-            align-items: center;
-        }
-
-        .about-img {
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-        }
-
-        .about-img img {
-            width: 100%;
-            height: auto;
-            display: block;
-            transition: transform 0.5s ease;
-        }
-
-        .about-img:hover img {
-            transform: scale(1.05);
-        }
-
-        .about-text h3 {
-            font-size: 1.8rem;
-            margin-bottom: 1.5rem;
-            color: var(--dark);
-        }
-
-        .about-text p {
-            margin-bottom: 1.5rem;
-        }
-
-        .stats {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
             gap: 2rem;
             margin-top: 3rem;
         }
-
-        .stat-item {
-            text-align: center;
-            padding: 2rem 1rem;
-            background-color: var(--white);
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            transition: transform 0.3s ease;
-        }
-
-        .stat-item:hover {
-            transform: translateY(-10px);
-        }
-
-        .stat-item i {
-            font-size: 2.5rem;
-            color: var(--primary);
-            margin-bottom: 1rem;
-        }
-
-        .stat-item h3 {
-            font-size: 2.5rem;
-            color: var(--dark);
-            margin-bottom: 0.5rem;
-        }
-
-        .stat-item p {
-            color: var(--text);
-        }
-
-        .initiatives {
-            background-color: var(--white);
-        }
-
-        .initiatives-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-        }
-
-        .initiative-card {
-            background-color: var(--light);
-            border-radius: 10px;
+        
+        .card {
+            background: white;
+            border-radius: 12px;
             overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            transition: transform 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
         }
-
-        .initiative-card:hover {
+        
+        .card:hover {
             transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
         }
-
-        .initiative-img {
+        
+        .card-icon {
             height: 200px;
-            overflow: hidden;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: white;
         }
-
-        .initiative-img img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
+        
+        .card-content {
+            padding: 2rem;
         }
-
-        .initiative-card:hover .initiative-img img {
-            transform: scale(1.1);
-        }
-
-        .initiative-content {
-            padding: 1.5rem;
-        }
-
-        .initiative-content h3 {
+        
+        .card-content h3 {
             font-size: 1.5rem;
             margin-bottom: 1rem;
             color: var(--dark);
         }
-
-        .initiative-content p {
+        
+        .card-content p {
+            color: var(--gray);
             margin-bottom: 1.5rem;
         }
-
-        .cta {
-            background: linear-gradient(to right, var(--primary), var(--secondary));
-            color: var(--white);
-            text-align: center;
-            padding: 5rem 0;
+        
+        /* AIGC应用区域 */
+        .applications {
+            background-color: #f8f9fa;
         }
-
-        .cta h2 {
-            font-size: 2.5rem;
+        
+        .app-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+        
+        .app-item {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            width: calc(33.333% - 1.5rem);
+            min-width: 280px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s;
+        }
+        
+        .app-item:hover {
+            transform: translateY(-5px);
+        }
+        
+        .app-icon {
+            background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             margin-bottom: 1.5rem;
+            color: white;
+            font-size: 1.5rem;
         }
-
-        .cta p {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
+        
+        .app-item:nth-child(2) .app-icon {
+            background: linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%);
         }
-
-        .cta .btn {
-            background-color: var(--white);
-            color: var(--primary);
+        
+        .app-item:nth-child(3) .app-icon {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
         }
-
-        .cta .btn:hover {
-            background-color: var(--accent);
-            color: var(--white);
+        
+        .app-item:nth-child(4) .app-icon {
+            background: linear-gradient(135deg, #84fab0 0%, #8fd3f4 100%);
         }
-
+        
+        .app-item:nth-child(5) .app-icon {
+            background: linear-gradient(135deg, #d4fc79 0%, #96e6a1 100%);
+        }
+        
+        .app-item:nth-child(6) .app-icon {
+            background: linear-gradient(135deg, #a6c0fe 0%, #f68084 100%);
+        }
+        
+        /* 技术架构 */
+        .architecture {
+            display: flex;
+            align-items: center;
+            margin-top: 3rem;
+            gap: 3rem;
+        }
+        
+        .architecture-image {
+            flex: 1;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 12px;
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 5rem;
+            box-shadow: 0 15px 35px rgba(58, 134, 255, 0.2);
+        }
+        
+        .architecture-content {
+            flex: 1;
+        }
+        
+        .architecture-content h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: var(--dark);
+        }
+        
+        .architecture-content ul {
+            list-style: none;
+        }
+        
+        .architecture-content li {
+            margin-bottom: 1.2rem;
+            padding-left: 2rem;
+            position: relative;
+        }
+        
+        .architecture-content li:before {
+            content: '\f00c';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            position: absolute;
+            left: 0;
+            color: var(--success);
+        }
+        
+        /* 页脚 */
         footer {
             background-color: var(--dark);
-            color: var(--white);
-            padding: 3rem 0 1rem;
+            color: white;
+            padding: 4rem 0 2rem;
         }
-
+        
         .footer-content {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 2rem;
-            margin-bottom: 2rem;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 3rem;
+            margin-bottom: 3rem;
         }
-
+        
+        .footer-column {
+            flex: 1;
+            min-width: 250px;
+        }
+        
         .footer-column h3 {
             font-size: 1.3rem;
             margin-bottom: 1.5rem;
-            position: relative;
-            padding-bottom: 10px;
+            color: var(--primary);
         }
-
-        .footer-column h3::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 40px;
-            height: 2px;
-            background-color: var(--accent);
-        }
-
-        .footer-column p {
-            margin-bottom: 1rem;
-        }
-
+        
         .footer-links {
             list-style: none;
         }
-
+        
         .footer-links li {
             margin-bottom: 0.8rem;
         }
-
-        .footer-links li a {
-            color: var(--light);
+        
+        .footer-links a {
+            color: #aaa;
             text-decoration: none;
-            transition: all 0.3s ease;
+            transition: color 0.3s;
         }
-
-        .footer-links li a:hover {
-            color: var(--accent);
-            padding-left: 5px;
+        
+        .footer-links a:hover {
+            color: var(--primary);
         }
-
-        .social-links {
+        
+        .social-icons {
             display: flex;
             gap: 1rem;
+            margin-top: 1.5rem;
         }
-
-        .social-links a {
+        
+        .social-icons a {
             display: inline-flex;
             align-items: center;
             justify-content: center;
             width: 40px;
             height: 40px;
-            background-color: rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.1);
             border-radius: 50%;
-            color: var(--white);
-            text-decoration: none;
-            transition: all 0.3s ease;
+            color: white;
+            font-size: 1.2rem;
+            transition: background 0.3s, transform 0.3s;
         }
-
-        .social-links a:hover {
-            background-color: var(--accent);
-            transform: translateY(-5px);
+        
+        .social-icons a:hover {
+            background: var(--primary);
+            transform: translateY(-3px);
         }
-
+        
         .copyright {
             text-align: center;
             padding-top: 2rem;
             border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #aaa;
+            font-size: 0.9rem;
         }
-
-        .mobile-menu {
-            display: none;
-            font-size: 1.5rem;
-            cursor: pointer;
-        }
-
+        
+        /* 响应式设计 */
         @media (max-width: 992px) {
-            .about-content {
-                grid-template-columns: 1fr;
+            .architecture {
+                flex-direction: column;
             }
             
-            .initiatives-grid {
-                grid-template-columns: repeat(2, 1fr);
+            .architecture-image, .architecture-content {
+                width: 100%;
             }
             
-            .footer-content {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            
-            .stats {
-                grid-template-columns: repeat(2, 1fr);
+            .hero h1 {
+                font-size: 2.8rem;
             }
         }
-
+        
         @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: var(--dark);
+                flex-direction: column;
+                padding: 1rem 0;
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+            }
+            
+            .nav-links.active {
+                display: flex;
+            }
+            
+            .nav-links li {
+                margin: 0;
+                text-align: center;
+                padding: 0.8rem 0;
+            }
+            
+            .mobile-toggle {
+                display: block;
+            }
+            
             .hero h1 {
-                font-size: 2.5rem;
+                font-size: 2.3rem;
             }
             
             .hero p {
                 font-size: 1.1rem;
             }
             
-            nav ul {
-                display: none;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                width: 100%;
-                background-color: var(--primary);
-                flex-direction: column;
-                padding: 1rem 0;
-                text-align: center;
-                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+            .section-title h2 {
+                font-size: 2rem;
             }
             
-            nav ul.active {
-                display: flex;
-            }
-            
-            nav ul li {
-                margin: 0;
-                padding: 0.8rem 0;
-            }
-            
-            .mobile-menu {
-                display: block;
-            }
-            
-            .initiatives-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .footer-content {
-                grid-template-columns: 1fr;
-            }
-            
-            .stats {
-                grid-template-columns: 1fr;
+            .app-item {
+                width: calc(50% - 1.5rem);
             }
         }
-
-        /* Animation for stats counter */
-        .counter {
-            transition: all 0.5s ease;
+        
+        @media (max-width: 576px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .app-item {
+                width: 100%;
+            }
+            
+            .cards-container {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- Header -->
+    <!-- 头部导航 -->
     <header>
-        <div class="container nav-container">
+        <div class="container header-container">
             <div class="logo">
-                <i class="fas fa-seedling"></i>
-                <span>Green Network</span>
+                <i class="fas fa-robot"></i>
+                <span>AIGC探索</span>
             </div>
-            <nav>
-                <div class="mobile-menu">
-                    <i class="fas fa-bars"></i>
-                </div>
-                <ul>
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#initiatives">Initiatives</a></li>
-                    <li><a href="#get-involved">Get Involved</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-            </nav>
+            
+            <div class="mobile-toggle" id="mobileToggle">
+                <i class="fas fa-bars"></i>
+            </div>
+            
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home">首页</a></li>
+                <li><a href="#about">AIGC简介</a></li>
+                <li><a href="#applications">应用领域</a></li>
+                <li><a href="#technology">技术架构</a></li>
+                <li><a href="#future">未来展望</a></li>
+            </ul>
         </div>
     </header>
 
-    <!-- Hero Section -->
+    <!-- 英雄区域 -->
     <section class="hero" id="home">
-        <div class="container hero-content">
-            <h1>Protect Our Planet, Preserve Our Future</h1>
-            <p>Join the global movement to create a sustainable world through conservation, education, and community action.</p>
-            <a href="#get-involved" class="btn">Join Our Network</a>
+        <div class="container">
+            <p class="subtitle">探索AIGC的世界</p>
+            <h1>人工智能生成内容</h1>
+            <p>人工智能生成内容（AIGC）正在彻底改变内容创作的方式。从文本、图像到音乐和视频，AI正在成为创意产业的重要驱动力。</p>
+            <a href="#about" class="cta-button">开始探索 <i class="fas fa-arrow-down"></i></a>
         </div>
     </section>
 
-    <!-- About Section -->
+    <!-- AIGC简介 -->
     <section id="about">
         <div class="container">
             <div class="section-title">
-                <h2>About Green Network</h2>
-                <p>We are a global community dedicated to environmental protection and sustainable development.</p>
+                <h2>什么是AIGC？</h2>
+                <p>人工智能生成内容（AIGC）是指利用人工智能技术自动或半自动地生成文本、图像、音频、视频等内容的过程。</p>
             </div>
-            <div class="about-content">
-                <div class="about-img">
-                    <img src="https://images.unsplash.com/photo-1507591064344-4c6ce005b128?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Team planting trees">
+            
+            <div class="cards-container">
+                <div class="card">
+                    <div class="card-icon">
+                        <i class="fas fa-keyboard"></i>
+                    </div>
+                    <div class="card-content">
+                        <h3>文本生成</h3>
+                        <p>利用GPT等大语言模型生成文章、报告、代码、对话等文本内容，显著提升写作效率。</p>
+                    </div>
                 </div>
-                <div class="about-text">
-                    <h3>Our Mission</h3>
-                    <p>Green Network is committed to creating a sustainable future by protecting natural ecosystems, promoting renewable energy, and empowering communities to take environmental action.</p>
-                    <p>Founded in 2010, we've grown from a small grassroots organization to an international network with over 50,000 members across 120 countries.</p>
-                    <p>Our approach combines scientific research, community engagement, and policy advocacy to address the most pressing environmental challenges of our time.</p>
-                    <a href="#" class="btn">Learn More</a>
+                
+                <div class="card">
+                    <div class="card-icon">
+                        <i class="fas fa-palette"></i>
+                    </div>
+                    <div class="card-content">
+                        <h3>图像生成</h3>
+                        <p>通过Stable Diffusion、DALL-E等模型根据文字描述生成高质量图像、插画和设计作品。</p>
+                    </div>
                 </div>
-            </div>
-            <div class="stats">
-                <div class="stat-item">
-                    <i class="fas fa-tree"></i>
-                    <h3 class="counter" data-target="2500000">0</h3>
-                    <p>Trees Planted</p>
-                </div>
-                <div class="stat-item">
-                    <i class="fas fa-users"></i>
-                    <h3 class="counter" data-target="50000">0</h3>
-                    <p>Active Members</p>
-                </div>
-                <div class="stat-item">
-                    <i class="fas fa-globe-americas"></i>
-                    <h3 class="counter" data-target="120">0</h3>
-                    <p>Countries Reached</p>
-                </div>
-                <div class="stat-item">
-                    <i class="fas fa-recycle"></i>
-                    <h3 class="counter" data-target="1500">0</h3>
-                    <p>Cleanup Projects</p>
+                
+                <div class="card">
+                    <div class="card-icon">
+                        <i class="fas fa-music"></i>
+                    </div>
+                    <div class="card-content">
+                        <h3>音频生成</h3>
+                        <p>AI可以创作音乐、生成语音、模仿人声，甚至创作完整的歌曲和配乐。</p>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Initiatives Section -->
-    <section class="initiatives" id="initiatives">
+    <!-- 应用领域 -->
+    <section class="applications" id="applications">
         <div class="container">
             <div class="section-title">
-                <h2>Our Initiatives</h2>
-                <p>Discover the key programs and projects we're implementing to protect our planet.</p>
+                <h2>AIGC应用领域</h2>
+                <p>AIGC技术正在渗透到各个行业，为内容创作和生产方式带来革命性变化</p>
             </div>
-            <div class="initiatives-grid">
-                <div class="initiative-card">
-                    <div class="initiative-img">
-                        <img src="https://dialogue.earth/content/uploads/2021/04/lessons-from-the-rush-to-reforest-china-dialogue-2400x1599.jpg" alt="Reforestation">
+            
+            <div class="app-list">
+                <div class="app-item">
+                    <div class="app-icon">
+                        <i class="fas fa-newspaper"></i>
                     </div>
-                    <div class="initiative-content">
-                        <h3>Global Reforestation</h3>
-                        <p>Planting millions of trees worldwide to restore ecosystems, combat climate change, and protect biodiversity.</p>
-                        <a href="#" class="btn">Learn More</a>
-                    </div>
+                    <h3>媒体与新闻</h3>
+                    <p>自动生成新闻稿、报道和个性化内容，提升媒体生产效率。</p>
                 </div>
-                <div class="initiative-card">
-                    <div class="initiative-img">
-                        <img src="https://images.unsplash.com/photo-1621451537084-482c73073a0f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80" alt="Ocean Conservation">
+                
+                <div class="app-item">
+                    <div class="app-icon">
+                        <i class="fas fa-shopping-cart"></i>
                     </div>
-                    <div class="initiative-content">
-                        <h3>Ocean Conservation</h3>
-                        <p>Protecting marine ecosystems, reducing plastic pollution, and promoting sustainable fishing practices.</p>
-                        <a href="#" class="btn">Learn More</a>
-                    </div>
+                    <h3>电商与营销</h3>
+                    <p>生成产品描述、广告文案和营销素材，提高转化率。</p>
                 </div>
-                <div class="initiative-card">
-                    <div class="initiative-img">
-                        <img src="https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2072&q=80" alt="Renewable Energy">
+                
+                <div class="app-item">
+                    <div class="app-icon">
+                        <i class="fas fa-graduation-cap"></i>
                     </div>
-                    <div class="initiative-content">
-                        <h3>Renewable Energy</h3>
-                        <p>Promoting solar, wind, and other clean energy sources to reduce dependence on fossil fuels.</p>
-                        <a href="#" class="btn">Learn More</a>
+                    <h3>教育与培训</h3>
+                    <p>创建个性化学习材料、练习题和互动教学内容。</p>
+                </div>
+                
+                <div class="app-item">
+                    <div class="app-icon">
+                        <i class="fas fa-gamepad"></i>
                     </div>
+                    <h3>游戏与娱乐</h3>
+                    <p>生成游戏剧情、角色对话、场景和音效，丰富游戏体验。</p>
+                </div>
+                
+                <div class="app-item">
+                    <div class="app-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h3>软件开发</h3>
+                    <p>辅助编写代码、生成文档和调试程序，提高开发效率。</p>
+                </div>
+                
+                <div class="app-item">
+                    <div class="app-icon">
+                        <i class="fas fa-film"></i>
+                    </div>
+                    <h3>影视创作</h3>
+                    <p>生成剧本、分镜、特效和配音，降低影视制作成本。</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- CTA Section -->
-    <section class="cta" id="get-involved">
+    <!-- 技术架构 -->
+    <section id="technology">
         <div class="container">
-            <h2>Join Our Global Movement</h2>
-            <p>Together, we can create a sustainable future for generations to come. Every action counts, no matter how small.</p>
-            <a href="#" class="btn">Become a Member</a>
+            <div class="section-title">
+                <h2>AIGC技术架构</h2>
+                <p>了解驱动AIGC的核心技术和工作原理</p>
+            </div>
+            
+            <div class="architecture">
+                <div class="architecture-image">
+                    <i class="fas fa-network-wired"></i>
+                </div>
+                <div class="architecture-content">
+                    <h3>AIGC核心技术栈</h3>
+                    <ul>
+                        <li><strong>生成模型</strong>：如GPT、Stable Diffusion、DALL-E等</li>
+                        <li><strong>大语言模型</strong>：基于Transformer架构的预训练模型</li>
+                        <li><strong>扩散模型</strong>：用于高质量图像生成的前沿技术</li>
+                        <li><strong>多模态学习</strong>：结合文本、图像、音频等多种数据类型</li>
+                        <li><strong>强化学习</strong>：优化模型输出以满足特定目标</li>
+                        <li><strong>提示工程</strong>：设计有效提示以引导AI生成高质量内容</li>
+                    </ul>
+                </div>
+            </div>
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer id="contact">
+    <!-- 未来展望 -->
+    <section id="future">
+        <div class="container">
+            <div class="section-title">
+                <h2>AIGC未来展望</h2>
+                <p>人工智能生成内容的未来发展趋势和潜在影响</p>
+            </div>
+            
+            <div class="cards-container">
+                <div class="card">
+                    <div class="card-icon" style="background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <div class="card-content">
+                        <h3>市场增长</h3>
+                        <p>预计到2027年，AIGC市场规模将超过千亿美元，年复合增长率超过30%。</p>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-icon" style="background: linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%);">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="card-content">
+                        <h3>人机协作</h3>
+                        <p>AIGC将发展为人类创作者的重要助手，形成高效的人机协作创作模式。</p>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-icon" style="background: linear-gradient(135deg, #84fab0 0%, #8fd3f4 100%);">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <div class="card-content">
+                        <h3>技术突破</h3>
+                        <p>多模态模型、具身智能和通用人工智能将推动AIGC能力边界持续扩展。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer>
         <div class="container">
             <div class="footer-content">
                 <div class="footer-column">
-                    <h3>Green Network</h3>
-                    <p>We are dedicated to protecting our planet through collaborative action, education, and sustainable solutions.</p>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <h3>AIGC探索</h3>
+                    <p>探索人工智能生成内容的世界，了解技术前沿、应用案例和未来趋势。</p>
+                    <div class="social-icons">
                         <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-github"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
                     </div>
                 </div>
+                
                 <div class="footer-column">
-                    <h3>Quick Links</h3>
+                    <h3>快速链接</h3>
                     <ul class="footer-links">
-                        <li><a href="#home">Home</a></li>
-                        <li><a href="#about">About Us</a></li>
-                        <li><a href="#initiatives">Initiatives</a></li>
-                        <li><a href="#get-involved">Get Involved</a></li>
-                        <li><a href="#contact">Contact</a></li>
+                        <li><a href="#home">首页</a></li>
+                        <li><a href="#about">AIGC简介</a></li>
+                        <li><a href="#applications">应用领域</a></li>
+                        <li><a href="#technology">技术架构</a></li>
+                        <li><a href="#future">未来展望</a></li>
                     </ul>
                 </div>
+                
                 <div class="footer-column">
-                    <h3>Our Programs</h3>
+                    <h3>相关资源</h3>
                     <ul class="footer-links">
-                        <li><a href="#">Reforestation</a></li>
-                        <li><a href="#">Ocean Cleanup</a></li>
-                        <li><a href="#">Wildlife Protection</a></li>
-                        <li><a href="#">Climate Education</a></li>
-                        <li><a href="#">Sustainable Agriculture</a></li>
+                        <li><a href="#">AIGC工具推荐</a></li>
+                        <li><a href="#">学习资源</a></li>
+                        <li><a href="#">行业报告</a></li>
+                        <li><a href="#">研究论文</a></li>
+                        <li><a href="#">社区论坛</a></li>
                     </ul>
                 </div>
+                
                 <div class="footer-column">
-                    <h3>Contact Us</h3>
-                    <p><i class="fas fa-map-marker-alt"></i> Copper Creek Drive, New York</p>
-                    <p><i class="fas fa-phone"></i> +1 (312) 171-0771</p>
-                    <p><i class="fas fa-envelope"></i> support@greennetwork.org</p>
+                    <h3>联系我们</h3>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-envelope"></i> contact@aigc-explore.com</li>
+                        <li><i class="fas fa-phone"></i> +86 4008888123</li>
+                        <li><i class="fas fa-map-marker-alt"></i> 北京市海淀区科技园</li>
+                    </ul>
                 </div>
             </div>
+            
             <div class="copyright">
-                <p>&copy; 2025 Green Network. All rights reserved.</p>
+                <p>&copy; 2023 AIGC探索 | 探索AIGC的世界，改变从此刻开始 | 本页面仅为展示用途</p>
             </div>
         </div>
     </footer>
 
     <script>
-        // Mobile Menu Toggle
-        document.querySelector('.mobile-menu').addEventListener('click', function() {
-            document.querySelector('nav ul').classList.toggle('active');
+        // 移动端导航切换
+        const mobileToggle = document.getElementById('mobileToggle');
+        const navLinks = document.getElementById('navLinks');
+        
+        mobileToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
         });
-
-        // Counter Animation
-        function animateCounters() {
-            const counters = document.querySelectorAll('.counter');
-            const speed = 200; // The lower the slower
-            
-            counters.forEach(counter => {
-                const target = +counter.getAttribute('data-target');
-                const count = +counter.innerText;
-                
-                const inc = target / speed;
-                
-                if(count < target) {
-                    counter.innerText = Math.ceil(count + inc);
-                    setTimeout(animateCounters, 1);
-                } else {
-                    counter.innerText = target;
-                }
-            });
-        }
-
-        // Initialize counters when page loads
-        window.addEventListener('load', animateCounters);
-
-        // Smooth scrolling for navigation links
+        
+        // 平滑滚动
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 e.preventDefault();
                 
-                const targetId = this.getAttribute('href');
-                if(targetId === '#') return;
+                if(this.getAttribute('href') === '#') return;
                 
+                const targetId = this.getAttribute('href');
                 const targetElement = document.querySelector(targetId);
+                
                 if(targetElement) {
                     window.scrollTo({
                         top: targetElement.offsetTop - 80,
                         behavior: 'smooth'
                     });
                     
-                    document.querySelector('nav ul').classList.remove('active');
+                    // 关闭移动端菜单
+                    navLinks.classList.remove('active');
                 }
             });
         });
+        
+        // 滚动效果 - 卡片动画
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if(entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+        
+        // 观察所有卡片
+        document.querySelectorAll('.card, .app-item').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            observer.observe(card);
+        });
     </script>
 </body>
-
 </html>
